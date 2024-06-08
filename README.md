@@ -1,6 +1,6 @@
 # bot4lucky
-a bot for luckygames.io / luckygames.app
-the strategy script must be coded in javascript, and not Lua script. (Dice, Balls)
+a bot for luckygames.io / luckygames.app (Dice, Balls) <br />
+the strategy script must be coded in javascript, and not Lua script. 
 
 # Videos: <br /> 
  <br />
