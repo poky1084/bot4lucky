@@ -682,7 +682,7 @@ function ballBet(betsize, numbers){
     "bet": betsize.toFixed(8),
     "clientSeed": randomString(16),
     "isActiveStatistic": false,
-    "paymentMethod": currencyid[currency],
+    "paymentMethod": currencyid[currency.toUpperCase()],
     "serverSeedHash": randomString(64),
     "suggestedNumbers": JSON.stringify(numbers)
 	}
@@ -722,7 +722,7 @@ function DiceBet(betsize, chance, bethigh){
 		"bet": betsize.toFixed(8),
 		"clientSeed": randomString(16),
 		"isActiveStatistic": false,
-		"paymentMethod": currencyid[currency],
+		"paymentMethod": currencyid[currency.toUpperCase()],
 		"serverSeedHash": randomString(64),
 		"sign": bethigh == true ? 1 : 0,
 		"suggestedNumbers": target.toFixed(0)
