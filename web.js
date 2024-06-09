@@ -714,7 +714,7 @@ function DiceBet(betsize, chance, bethigh){
 	if(bethigh == false){
 		target = chance
 	} else {
-		target = 100 - chance
+		target = 99 - chance
 	}
 	
 
@@ -1011,7 +1011,7 @@ function data(json){
 			
 			lastBet.payoutMultiplier = multiplierBalls
 			
-			if(parseFloat(json.win) > 0){
+			if(parseFloat(json.win) > 0 && json.coefficient >= 1){
 				win = true;
 				lastBet.win = true;
 				color = "#05f711"
@@ -1029,13 +1029,20 @@ function data(json){
 				losses++;
 				losestreak++;
 				winstreak = 0;
-				lastBet.payoutMultiplier = 0;
-				multiplierBalls = 0
+				
+				if(json.coefficient > 0){
+					lastBet.payoutMultiplier = json.coefficient;
+					multiplierBalls = json.coefficient
+				} else {
+					lastBet.payoutMultiplier = 0;
+					multiplierBalls = 0
+				}
+				
 				document.getElementById("result").innerHTML = lastBet.Roll.toFixed(0)
 				document.getElementById("result").style.color = color
 											
 			} 
-		
+
 			current_profit = parseFloat(json.win) - parseFloat(json.lose);
 			profit_total += parseFloat(json.win) - parseFloat(json.lose);
 			wagered += parseFloat(json.bet);
@@ -1069,17 +1076,8 @@ function data(json){
 			tdcheck.id = randomString(21);
 			
 			tdhigh.appendChild(tdcheck);
-			tdTargetChance.innerHTML = multiplierBalls.toFixed(4) + "x"
+			tdTargetChance.innerHTML = (98 / (lastBet.chance)).toFixed(4) + "x"
 			
-			
-			
-			if(bethigh == false){
-				//tdRollChance.innerHTML = json.data.dicePlay.state.result.toFixed(4)
-			} else {
-				//tdRollChance.innerHTML = (100 - json.data.dicePlay.state.result).toFixed(4)
-			}
-			
-			tdProfit.innerHTML = current_profit.toFixed(8)
 			if(bethigh){
 				lastBet.targetNumber = (98 / (lastBet.chance));
 				tdTargetNumber.innerHTML = ">" + (98 / (lastBet.chance)).toFixed(2)
@@ -1087,6 +1085,10 @@ function data(json){
 				lastBet.targetNumber = (98 / lastBet.chance);
 				tdTargetNumber.innerHTML = ">" + (98 / lastBet.chance).toFixed(2)
 			}
+			
+			
+			tdProfit.innerHTML = current_profit.toFixed(8)
+
 			tdRollNumber.innerHTML = lastBet.Roll.toFixed(0)
 			tdNonce.innerHTML = gameid;
 			tdBetID.innerHTML = json.id;
