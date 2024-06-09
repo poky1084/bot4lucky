@@ -1011,7 +1011,7 @@ function data(json){
 			
 			lastBet.payoutMultiplier = multiplierBalls
 			
-			if(parseFloat(json.win) > 0 && json.coefficient >= 1){
+			if(parseFloat(json.win) > 0){
 				win = true;
 				lastBet.win = true;
 				color = "#05f711"
@@ -1030,7 +1030,7 @@ function data(json){
 				losestreak++;
 				winstreak = 0;
 				
-				if(json.coefficient > 0){
+				if(json.coefficient < 1 && json.coefficient > 0 ){
 					lastBet.payoutMultiplier = json.coefficient;
 					multiplierBalls = json.coefficient
 				} else {
@@ -1076,14 +1076,14 @@ function data(json){
 			tdcheck.id = randomString(21);
 			
 			tdhigh.appendChild(tdcheck);
-			tdTargetChance.innerHTML = (98 / (lastBet.chance)).toFixed(4) + "x"
+			tdTargetChance.innerHTML = multiplierBalls.toFixed(4) + "x"
 			
 			if(bethigh){
 				lastBet.targetNumber = (98 / (lastBet.chance));
-				tdTargetNumber.innerHTML = ">" + (98 / (lastBet.chance)).toFixed(2)
+				tdTargetNumber.innerHTML = ">" + (98 / (lastBet.chance)).toFixed(4)
 			} else {
 				lastBet.targetNumber = (98 / lastBet.chance);
-				tdTargetNumber.innerHTML = ">" + (98 / lastBet.chance).toFixed(2)
+				tdTargetNumber.innerHTML = ">" + (98 / lastBet.chance).toFixed(4)
 			}
 			
 			
