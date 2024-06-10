@@ -1033,11 +1033,13 @@ function data(json){
 				if(json.coefficient < 1 && json.coefficient > 0 ){
 					lastBet.payoutMultiplier = json.coefficient;
 					multiplierBalls = json.coefficient
+					
 				} else {
 					lastBet.payoutMultiplier = 0;
 					multiplierBalls = 0
+					lastBet.payout = 0
 				}
-				lastBet.payout = 0
+				
 				document.getElementById("result").innerHTML = lastBet.Roll.toFixed(0)
 				document.getElementById("result").style.color = color
 											
