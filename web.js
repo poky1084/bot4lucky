@@ -1037,7 +1037,7 @@ function data(json){
 					lastBet.payoutMultiplier = 0;
 					multiplierBalls = 0
 				}
-				
+				lastBet.payout = 0
 				document.getElementById("result").innerHTML = lastBet.Roll.toFixed(0)
 				document.getElementById("result").style.color = color
 											
