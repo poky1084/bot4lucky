@@ -810,6 +810,7 @@ function data(json){
 				winstreak = 0;
 				lastBet.payoutMultiplier = 0;
 				multiplierDice = 0
+				lastBet.payout = 0
 				document.getElementById("result").innerHTML = lastBet.Roll.toFixed(0)
 				document.getElementById("result").style.color = color
 											
